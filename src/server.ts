@@ -4,10 +4,10 @@ import express from 'express';
 
 dotenv.config();
 
-const app = express();
+const server = express();
 
 // Necessary for parsing application/json
-app.use(express.json());
+server.use(express.json());
 
 const {
   CONNECTION_HOST,
@@ -25,18 +25,14 @@ const connection = mysql.createConnection({
   database: CONNECTION_DBNAME
 });
 
-app.get('/', (req, res) => {
-  res.send('Hello');
-});
-
-app.get('/words', (req, res) => {
+server.get('/words', (req, res) => {
   connection.query('SELECT * FROM words;', (error, data) => {
     if (error) console.log(error);
     res.json(data);
   });
 });
 
-app.post('/words', (req, res) => {
+server.post('/words', (req, res) => {
   const { origin, translation } = req.body;
   const sqlRequest = 'INSERT INTO words (origin, translation) VALUES (?, ?)';
 
@@ -46,16 +42,16 @@ app.post('/words', (req, res) => {
   });
 });
 
-app.get('/words/:id', (req, res) => {
+server.get('/words/:id', (req, res) => {
   const id = req.params?.id;
 
-  connection.query('SELECT * FROM words WHERE id = ?', [id], (error, data) => {
+  connection.query('SELECT * FROM words WHERE id = ?', [id], (error, data: any) => {
     if (error) console.log(error);
     res.json(data[0]);
   });
 });
 
-app.put('/words/:id', (req, res) => {
+server.put('/words/:id', (req, res) => {
   const id = req.params?.id;
   const { origin, translation } = req.body;
   const sqlRequest = 'UPDATE words SET origin = ?, translation = ? WHERE id = ?';
@@ -66,7 +62,7 @@ app.put('/words/:id', (req, res) => {
   });
 });
 
-app.delete('/words/:id', (req, res) => {
+server.delete('/words/:id', (req, res) => {
   const id = req.params?.id;
 
   connection.query('DELETE FROM words WHERE id = ?', [id], (error, data) => {
@@ -75,4 +71,4 @@ app.delete('/words/:id', (req, res) => {
   });
 });
 
-app.listen(3000, () => console.log('server has been started'));
+server.listen(3000, () => console.log('server has been started'));
