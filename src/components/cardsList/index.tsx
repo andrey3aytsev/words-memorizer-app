@@ -1,7 +1,7 @@
 import React from 'react';
-//import { ICard } from '../Card';
 import { ApiService } from '../../services/api';
-import { Card } from '../Card';
+import { Card } from '../card';
+import { Preloader } from '../shared/preloader';
 
 interface ICard {
   id: string,
@@ -12,6 +12,11 @@ interface ICard {
 const CardsList = () => {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [cards, setCards] = React.useState([]);
+
+  const handleDelete = (cardId: string) => {
+    return ApiService.deleteWord(cardId)
+      .then(() => setCards(cards.filter(({ id }) => id !== cardId)));
+  };
 
   React.useEffect(() => {
     setIsLoading(true);
@@ -25,8 +30,8 @@ const CardsList = () => {
   return (
     <div>
       { isLoading
-        ? <div>Is Loading...</div>
-        : cards.map((card, index) => <Card card={card} key={index} />)
+        ? <Preloader />
+        : cards.map((card, index) => <Card card={card} key={index} onDelete={handleDelete} />)
       }
     </div>
   );

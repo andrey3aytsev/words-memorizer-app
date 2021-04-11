@@ -4,6 +4,12 @@ class ApiService {
   static getWords(): Promise<any> {
     return fetch(`${this.basePath}/words`);
   }
+
+  static deleteWord(id: string): Promise<any> {
+    return fetch(`${this.basePath}/words/${id}`, {
+      method: 'DELETE',
+    });
+  }
 }
 
 export { ApiService };

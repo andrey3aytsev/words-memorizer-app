@@ -1,5 +1,5 @@
 import React from 'react';
-import { CardsList } from './components/CardsList';
+import { CardsList } from './components/cardsList';
 
 function App() {
   return (
@@ -9,4 +9,4 @@ function App() {
   );
 }
 
-export default App;
+export { App };
