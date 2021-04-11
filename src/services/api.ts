@@ -1,13 +1,8 @@
 class ApiService {
-  static basePath: string = 'http://localhost:3001/api';
+  static basePath: string = 'http://localhost:3001';
 
-  static getWords(): any {
-    //return fetch(`${this.basePath}/words`);
-    return Promise.resolve([{
-      "id": "8d057b16-90d6-11eb-b12e-68b34a57d72f",
-      "origin": "book",
-      "translation": "книга1"
-    }]);
+  static getWords(): Promise<any> {
+    return fetch(`${this.basePath}/words`);
   }
 }
 

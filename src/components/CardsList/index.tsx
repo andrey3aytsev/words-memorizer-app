@@ -17,7 +17,7 @@ const CardsList = () => {
     setIsLoading(true);
 
     ApiService.getWords()
-      //.then(result => result.json())
+      .then(result => result.json())
       .then((cards: any) => setCards(cards))
       .finally(() => setIsLoading(false));
   }, []);
