@@ -1,15 +1,9 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { ApiService } from '../../services/api';
 import { Card } from '../card';
 import { Preloader } from '../shared/preloader';
 
-interface ICard {
-  id: string,
-  origin: string,
-  translation: string
-}
-
-const CardsList = () => {
+const CardsList: FunctionComponent = () => {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [cards, setCards] = React.useState([]);
 
@@ -23,7 +17,7 @@ const CardsList = () => {
 
     ApiService.getWords()
       .then(result => result.json())
-      .then((cards: any) => setCards(cards))
+      .then((cards) => setCards(cards))
       .finally(() => setIsLoading(false));
   }, []);
 
@@ -31,7 +25,9 @@ const CardsList = () => {
     <div>
       { isLoading
         ? <Preloader />
-        : cards.map((card, index) => <Card card={card} key={index} onDelete={handleDelete} />)
+        : cards.length
+          ? cards.map((card, index) => <Card card={card} key={index} onDelete={handleDelete}/>)
+          : <>Список пуст</>
       }
     </div>
   );

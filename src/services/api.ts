@@ -1,11 +1,11 @@
 class ApiService {
-  static basePath: string = 'http://localhost:3001';
+  static basePath = 'http://localhost:3001';
 
-  static getWords(): Promise<any> {
+  static getWords(): Promise<Response> {
     return fetch(`${this.basePath}/words`);
   }
 
-  static deleteWord(id: string): Promise<any> {
+  static deleteWord(id: string): Promise<Response> {
     return fetch(`${this.basePath}/words/${id}`, {
       method: 'DELETE',
     });

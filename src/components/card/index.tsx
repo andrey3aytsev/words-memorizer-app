@@ -1,14 +1,19 @@
-import { useState } from 'react';
+import { FunctionComponent, useState } from 'react';
 import { useStyles } from './useStyles';
 import { Preloader } from '../shared/preloader';
 
 interface ICard {
-  id: string,
-  origin: string,
-  translation: string
+  id: string;
+  origin: string;
+  translation: string;
 }
 
-const Card = ({ card, onDelete }: any) => {
+interface ICardProps {
+  card: ICard;
+  onDelete: (id: string) => Promise<void>;
+}
+
+const Card: FunctionComponent<ICardProps> = ({ card, onDelete }) => {
   const [isDeleting, setIsDeleting] = useState(false);
   const classes = useStyles();
 
@@ -31,7 +36,4 @@ const Card = ({ card, onDelete }: any) => {
   );
 };
 
-export {
-  Card,
-  //ICard
-};
+export { Card };

@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { CardsList } from './components/cardsList';
 
-function App() {
+const App: FunctionComponent = () => {
   return (
     <>
       <CardsList />

@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { useStyles } from './useStyles';
 
-const Preloader = () => {
+const Preloader: FunctionComponent = () => {
   const classes = useStyles();
 
   return (
