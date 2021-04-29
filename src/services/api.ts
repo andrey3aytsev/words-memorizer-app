@@ -1,5 +1,5 @@
 class ApiService {
-  static basePath = 'http://localhost:3001';
+  static basePath = process.env.REACT_APP_API_URL;
 
   static getWords(): Promise<Response> {
     return fetch(`${this.basePath}/words`);
