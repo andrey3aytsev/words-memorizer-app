@@ -4,7 +4,7 @@ import { Card } from '../card';
 import { Preloader } from '../shared/preloader';
 
 const CardsList: FunctionComponent = () => {
-  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const [isLoading, setIsLoading] = React.useState<boolean>(true);
   const [cards, setCards] = React.useState([]);
 
   const handleDelete = (cardId: string) => {
@@ -13,8 +13,6 @@ const CardsList: FunctionComponent = () => {
   };
 
   React.useEffect(() => {
-    setIsLoading(true);
-
     ApiService.getWords()
       .then(result => result.json())
       .then((cards) => setCards(cards))
@@ -27,7 +25,7 @@ const CardsList: FunctionComponent = () => {
         ? <Preloader />
         : cards.length
           ? cards.map((card, index) => <Card card={card} key={index} onDelete={handleDelete}/>)
-          : <>Список пуст</>
+          : <>empty list</>
       }
     </div>
   );
