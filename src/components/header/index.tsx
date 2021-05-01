@@ -9,7 +9,7 @@ const Header: FunctionComponent = () => {
     <header>
       <nav>
         <NavLink className={ classes.navlink } exact to="/">Cards list</NavLink>
-        <NavLink className={ classes.navlink } to="/add">Add new card</NavLink>
+        <NavLink className={ classes.navlink } exact to="/add">Add new card</NavLink>
       </nav>
     </header>
   )

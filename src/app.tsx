@@ -1,8 +1,10 @@
-import React, { FunctionComponent } from 'react';
+import { FunctionComponent } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
 import { CardsList } from './components/cardsList';
 import { CreateCardForm } from './components/createCardForm';
 import { Header } from './components/header';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { NotFoundPage } from './components/notFoundPage';
 
 const App: FunctionComponent = () => {
   return (
@@ -13,8 +15,11 @@ const App: FunctionComponent = () => {
         <Route exact path="/">
           <CardsList />
         </Route>
-        <Route path="/add">
+        <Route exact path="/add">
           <CreateCardForm />
+        </Route>
+        <Route path="*">
+          <NotFoundPage />
         </Route>
       </Switch>
     </Router>

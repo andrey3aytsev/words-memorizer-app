@@ -1,18 +1,18 @@
-import React, { FunctionComponent } from 'react';
+import { FunctionComponent, useState, useEffect } from 'react';
 import { ApiService } from '../../services/api';
 import { Card } from '../card';
 import { Preloader } from '../shared/preloader';
 
 const CardsList: FunctionComponent = () => {
-  const [isLoading, setIsLoading] = React.useState<boolean>(true);
-  const [cards, setCards] = React.useState([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [cards, setCards] = useState([]);
 
   const handleDelete = (cardId: string) => {
     return ApiService.deleteWord(cardId)
       .then(() => setCards(cards.filter(({ id }) => id !== cardId)));
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     ApiService.getWords()
       .then(result => result.json())
       .then((cards) => setCards(cards))
