@@ -5,25 +5,28 @@ import { CardsList } from './components/cardsList';
 import { CreateCardForm } from './components/createCardForm';
 import { Header } from './components/header';
 import { NotFoundPage } from './components/notFoundPage';
-import { Container } from '@material-ui/core';
+import { Container, Box } from '@material-ui/core';
 
 const App: FunctionComponent = () => {
   return (
     <Router>
       <Header />
-      <Container maxWidth={false}>
-        <Switch>
-          <Route exact path="/">
-            <CardsList />
-          </Route>
-          <Route exact path="/add">
-            <CreateCardForm />
-          </Route>
-          <Route path="*">
-            <NotFoundPage />
-          </Route>
-        </Switch>
-      </Container>
+      <Box my={3}>
+        <Container maxWidth={false}>
+          <Switch>
+            <Route exact path="/">
+              <CardsList />
+            </Route>
+            <Route exact path="/add">
+              <CreateCardForm />
+            </Route>
+            <Route path="*">
+              <NotFoundPage />
+            </Route>
+          </Switch>
+        </Container>
+      </Box>
+
     </Router>
   );
 };

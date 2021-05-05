@@ -1,6 +1,6 @@
 import { FunctionComponent, useState } from 'react';
 import { useStyles } from './useStyles';
-import { Preloader } from '../shared/preloader';
+import { CircularProgress, Card as MaterialCard } from '@material-ui/core';
 
 interface ICard {
   id: string;
@@ -24,15 +24,15 @@ const Card: FunctionComponent<ICardProps> = ({ card, onDelete }) => {
   };
 
   return (
-    <div className={classes.card}>
+    <MaterialCard variant="outlined" className={classes.root}>
       <div>{ card.origin }</div>
       <div>{ card.translation }</div>
       {
         isDeleting
-          ? <button className={classes.closeButton} onClick={handleDelete}><Preloader /></button>
-          : <button className={classes.closeButton} onClick={handleDelete}>✕</button>
+          ? <button onClick={handleDelete}><CircularProgress /></button>
+          : <button onClick={handleDelete}>✕</button>
       }
-    </div>
+    </MaterialCard>
   );
 };
 

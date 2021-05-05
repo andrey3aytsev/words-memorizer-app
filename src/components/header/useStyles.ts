@@ -1,11 +1,11 @@
 import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    padding: theme.spacing(1)
+  link: {
+    '& + &': {
+      marginLeft: theme.spacing(2)
+    }
   }
 }));
 
 export { useStyles };
-
-

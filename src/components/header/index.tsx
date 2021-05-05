@@ -1,16 +1,18 @@
 import { FunctionComponent } from 'react';
+import { AppBar, Toolbar, Link, Typography } from '@material-ui/core';
 import { NavLink } from 'react-router-dom';
-import { AppBar, Toolbar } from '@material-ui/core';
-
+import { useStyles } from './useStyles';
 
 const Header: FunctionComponent = () => {
+  const classes = useStyles();
+
   return (
-    <AppBar position="static">
+    <AppBar position="static" color="primary">
       <Toolbar>
-        <nav>
-          <NavLink exact to="/">Cards list</NavLink>
-          <NavLink exact to="/add">Add new card</NavLink>
-        </nav>
+        <Typography>
+          <Link className={classes.link} color="inherit" component={NavLink} exact to="/">Cards list</Link>
+          <Link className={classes.link} color="inherit" component={NavLink} exact to="/add">Add new card</Link>
+        </Typography>
       </Toolbar>
     </AppBar>
   )

@@ -1,7 +1,7 @@
 import { FunctionComponent, useState, useEffect } from 'react';
 import { ApiService } from '../../services/api';
 import { Card } from '../card';
-import { Preloader } from '../shared/preloader';
+import { LinearProgress } from '@material-ui/core';
 
 const CardsList: FunctionComponent = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -22,7 +22,7 @@ const CardsList: FunctionComponent = () => {
   return (
     <div>
       { isLoading
-        ? <Preloader />
+        ? <LinearProgress />
         : cards.length
           ? cards.map((card, index) => <Card card={card} key={index} onDelete={handleDelete}/>)
           : <>empty list</>
