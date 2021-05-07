@@ -1,10 +1,11 @@
 import { FunctionComponent } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import { CardsList } from './components/cardsList';
-import { CreateCardForm } from './components/createCardForm';
+import { WordsList } from './components/wordsList';
+import { CreateWordForm } from './components/createWordForm';
 import { Header } from './components/header';
 import { NotFoundPage } from './components/notFoundPage';
+import { TestWords } from './components/testWords';
 import { Container, Box } from '@material-ui/core';
 
 const App: FunctionComponent = () => {
@@ -15,10 +16,13 @@ const App: FunctionComponent = () => {
         <Container maxWidth={false}>
           <Switch>
             <Route exact path="/">
-              <CardsList />
+              <WordsList />
             </Route>
-            <Route exact path="/add">
-              <CreateCardForm />
+            <Route exact path="/create">
+              <CreateWordForm />
+            </Route>
+            <Route exact path="/test">
+              <TestWords />
             </Route>
             <Route path="*">
               <NotFoundPage />

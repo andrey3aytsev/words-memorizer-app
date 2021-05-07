@@ -1,9 +1,9 @@
 import { FunctionComponent, useState, useEffect } from 'react';
 import { ApiService } from '../../services/api';
-import { Card } from '../card';
 import { Grid, LinearProgress } from '@material-ui/core';
+import { WordItem } from '../wordItem';
 
-const CardsList: FunctionComponent = () => {
+const WordsList: FunctionComponent = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [cards, setCards] = useState([]);
 
@@ -26,7 +26,7 @@ const CardsList: FunctionComponent = () => {
         <Grid container spacing={2}>
           { cards.map((card, index) =>
             <Grid item xs={3}>
-              <Card card={card} key={index} onDelete={handleDelete}/>
+              <WordItem card={card} key={index} onDelete={handleDelete}/>
             </Grid>
           )}
         </Grid>
@@ -36,4 +36,4 @@ const CardsList: FunctionComponent = () => {
   );
 };
 
-export { CardsList };
+export { WordsList };

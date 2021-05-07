@@ -10,8 +10,9 @@ const Header: FunctionComponent = () => {
     <AppBar position="static" color="primary">
       <Toolbar>
         <Typography>
-          <Link className={classes.link} color="inherit" component={NavLink} exact to="/">Cards list</Link>
-          <Link className={classes.link} color="inherit" component={NavLink} exact to="/add">Add new card</Link>
+          <Link className={classes.link} color="inherit" component={NavLink} exact to="/">Words</Link>
+          <Link className={classes.link} color="inherit" component={NavLink} exact to="/create">Create word</Link>
+          <Link className={classes.link} color="inherit" component={NavLink} exact to="/test">Test words</Link>
         </Typography>
       </Toolbar>
     </AppBar>

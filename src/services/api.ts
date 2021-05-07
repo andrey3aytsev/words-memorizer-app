@@ -10,6 +10,16 @@ class ApiService {
       method: 'DELETE',
     });
   }
+
+  static createWord(params: {origin: string, translation: string}): Promise<Response> {
+    return fetch(`${this.basePath}/words`, {
+      method: 'POST',
+      body: JSON.stringify(params),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+  }
 }
 
 export { ApiService };
