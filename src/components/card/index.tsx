@@ -1,6 +1,7 @@
 import { FunctionComponent, useState } from 'react';
 import { useStyles } from './useStyles';
-import { CircularProgress, Card as MaterialCard } from '@material-ui/core';
+import { Card as MaterialCard, Typography, IconButton, CircularProgress } from '@material-ui/core';
+import { Delete } from '@material-ui/icons';
 
 interface ICard {
   id: string;
@@ -25,13 +26,18 @@ const Card: FunctionComponent<ICardProps> = ({ card, onDelete }) => {
 
   return (
     <MaterialCard variant="outlined" className={classes.root}>
-      <div>{ card.origin }</div>
-      <div>{ card.translation }</div>
-      {
-        isDeleting
-          ? <button onClick={handleDelete}><CircularProgress /></button>
-          : <button onClick={handleDelete}>✕</button>
-      }
+      <div className={classes.content}>
+        <Typography className={classes.title} variant="h5" component="p">{ card.origin }</Typography>
+        <Typography variant="body2">{ card.translation }</Typography>
+      </div>
+      <div className={classes.actions}>
+        { !isDeleting &&
+          <IconButton onClick={handleDelete}>
+            <Delete/>
+          </IconButton>
+        }
+        { isDeleting && <CircularProgress/> }
+      </div>
     </MaterialCard>
   );
 };
