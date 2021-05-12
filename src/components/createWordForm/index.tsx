@@ -2,33 +2,27 @@ import { FunctionComponent, useState, ChangeEvent } from 'react';
 import { TextField, Button, CircularProgress } from '@material-ui/core';
 import { useStyles } from './useStyles';
 import { ApiService } from '../../services/api';
+import { useInput } from '../../hooks/useInput';
 
 const CreateWordForm: FunctionComponent = () => {
   const classes = useStyles();
-  const [origin, setOrigin] = useState<string>('');
-  const [translation, setTranslation] = useState<string>('');
+  const origin = useInput('');
+  const translation = useInput('');
   const [isSaving, setIsSaving] = useState<boolean>(false);
-
-  const handleChangeOrigin = (event: ChangeEvent<HTMLInputElement>) => {
-    setOrigin(event.target.value);
-  };
-
-  const handleChangeTranslation = (event: ChangeEvent<HTMLInputElement>) => {
-    setTranslation(event.target.value);
-  };
 
   const handleSubmit = (event: ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsSaving(true);
 
-    ApiService.createWord({ origin, translation })
-      .then(() => {
-        setOrigin('');
-        setTranslation('');
-      })
-      .finally(() => {
-        setIsSaving(false);
-      });
+    ApiService.createWord({
+      origin: origin.value,
+      translation: translation.value
+    }).then(() => {
+      origin.setValue('');
+      translation.setValue('');
+    }).finally(() => {
+      setIsSaving(false);
+    });
   };
 
   return (
@@ -41,18 +35,16 @@ const CreateWordForm: FunctionComponent = () => {
         <TextField
           className={classes.input}
           label="Origin"
-          value={origin}
           variant="outlined"
-          onChange={handleChangeOrigin}
+          { ...origin.bind }
         />
       </div>
       <div className={classes.formGroup}>
         <TextField
           className={classes.input}
           label="Translation"
-          value={translation}
           variant="outlined"
-          onChange={handleChangeTranslation}
+          { ...translation.bind }
         />
       </div>
       <div className={`${classes.formGroup} ${classes.actions}`}>

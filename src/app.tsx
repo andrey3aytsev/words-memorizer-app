@@ -15,22 +15,13 @@ const App: FunctionComponent = () => {
       <Box my={3}>
         <Container maxWidth={false}>
           <Switch>
-            <Route exact path="/">
-              <WordsList />
-            </Route>
-            <Route exact path="/create">
-              <CreateWordForm />
-            </Route>
-            <Route exact path="/test">
-              <TestWords />
-            </Route>
-            <Route path="*">
-              <NotFoundPage />
-            </Route>
+            <Route exact path="/"><WordsList /></Route>
+            <Route exact path="/create"><CreateWordForm /></Route>
+            <Route exact path="/test"><TestWords /></Route>
+            <Route path="*"><NotFoundPage /></Route>
           </Switch>
         </Container>
       </Box>
-
     </Router>
   );
 };

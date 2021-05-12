@@ -15,7 +15,7 @@ const WordsList: FunctionComponent = () => {
   useEffect(() => {
     ApiService.getWords()
       .then(result => result.json())
-      .then((cards) => setCards(cards))
+      .then((result) => setCards(result))
       .finally(() => setIsLoading(false));
   }, []);
 
@@ -25,8 +25,8 @@ const WordsList: FunctionComponent = () => {
       { !isLoading && !!cards.length &&
         <Grid container spacing={2}>
           { cards.map((card, index) =>
-            <Grid item xs={3}>
-              <WordItem card={card} key={index} onDelete={handleDelete}/>
+            <Grid key={index} item xs={3}>
+              <WordItem card={card} onDelete={handleDelete}/>
             </Grid>
           )}
         </Grid>

@@ -31,12 +31,12 @@ const WordItem: FunctionComponent<IWordProps> = ({ card, onDelete }) => {
         <Typography variant="body2">{ card.translation }</Typography>
       </div>
       <div className={classes.actions}>
-        { !isDeleting &&
-          <IconButton onClick={handleDelete}>
-            <Delete/>
-          </IconButton>
+        { isDeleting
+          ? <CircularProgress/>
+          : <IconButton onClick={handleDelete}>
+              <Delete/>
+            </IconButton>
         }
-        { isDeleting && <CircularProgress/> }
       </div>
     </Card>
   );
