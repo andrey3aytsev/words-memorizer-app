@@ -1,12 +1,12 @@
-import { createMuiTheme } from '@material-ui/core';
-import { blueGrey } from '@material-ui/core/colors';
+import { createTheme } from "@material-ui/core/styles";
+import { blueGrey } from "@material-ui/core/colors";
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
-      main: blueGrey['700']
-    }
-  }
+      main: blueGrey["700"],
+    },
+  },
 });
 
 export { theme };

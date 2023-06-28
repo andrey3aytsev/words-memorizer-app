@@ -1,14 +1,12 @@
-import { makeStyles } from '@material-ui/core';
+import { Theme, makeStyles } from "@material-ui/core";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   link: {
-    fontWeight: theme.typography.fontWeightBold,
-
-    '& + &': {
+    fontWeight: "bold",
+    "& + &": {
       marginLeft: theme.spacing(2),
-
-    }
-  }
+    },
+  },
 }));
 
 export { useStyles };
